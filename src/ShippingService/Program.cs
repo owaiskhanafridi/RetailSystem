@@ -35,6 +35,8 @@ app.MapGet("/", () => Results.Ok(new
     communication = "RabbitMQ consumer with gRPC query endpoint"
 }));
 
+Console.WriteLine("Starting ShippingService...");
+
 app.Run();
 
 static string GetRequiredSetting(IConfiguration configuration, string key) =>

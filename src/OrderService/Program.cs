@@ -122,6 +122,8 @@ app.MapGet("/", () => Results.Ok(new
     communication = "gRPC for checkout orchestration, REST for frontend clients, RabbitMQ for downstream events"
 }));
 
+Console.WriteLine("Starting OrderService...");
+
 app.Run();
 
 static string GetRequiredSetting(IConfiguration configuration, string key) =>

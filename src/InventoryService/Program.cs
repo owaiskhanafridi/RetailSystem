@@ -15,4 +15,6 @@ app.MapGet("/", () => Results.Ok(new
     communication = "gRPC"
 }));
 
+Console.WriteLine("Starting InventoryService...");
+
 app.Run();

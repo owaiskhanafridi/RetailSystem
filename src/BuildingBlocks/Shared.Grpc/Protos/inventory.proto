@@ -13,6 +13,7 @@ service InventoryProcessor {
 message InventoryItemReservation {
   string sku = 1;
   int32 quantity = 2;
+  string details = 3;
 }
 
 message InventoryStockLevel {

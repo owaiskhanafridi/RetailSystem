@@ -7,19 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.25.3" />
-    <PackageReference Include="Grpc.Core.Api" Version="2.57.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.57.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Protobuf Include="Protos\inventory.proto" GrpcServices="Both" />
-    <Protobuf Include="Protos\order.proto" GrpcServices="Both" />
-    <Protobuf Include="Protos\payment.proto" GrpcServices="Both" />
-    <Protobuf Include="Protos\shipping.proto" GrpcServices="Both" />
+    <None Include="Protos\inventory.proto" />
+    <None Include="Protos\order.proto" />
+    <None Include="Protos\payment.proto" />
+    <None Include="Protos\shipping.proto" />
   </ItemGroup>
 
 </Project>

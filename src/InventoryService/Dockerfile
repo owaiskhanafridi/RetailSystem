@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY ["RetailSystem.Microservices.sln", "."]
-COPY ["src/BuildingBlocks/Shared.Grpc/Shared.Grpc.csproj", "src/BuildingBlocks/Shared.Grpc/"]
+COPY ["src/BuildingBlocks/Shared.Grpc/Protos/inventory.proto", "src/BuildingBlocks/Shared.Grpc/Protos/"]
 COPY ["src/InventoryService/InventoryService.csproj", "src/InventoryService/"]
 RUN dotnet restore "src/InventoryService/InventoryService.csproj"
 

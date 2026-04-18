@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY ["RetailSystem.Microservices.sln", "."]
-COPY ["src/BuildingBlocks/Shared.Grpc/Shared.Grpc.csproj", "src/BuildingBlocks/Shared.Grpc/"]
+COPY ["src/BuildingBlocks/Shared.Grpc/Protos/shipping.proto", "src/BuildingBlocks/Shared.Grpc/Protos/"]
 COPY ["src/BuildingBlocks/Shared.Messaging/Shared.Messaging.csproj", "src/BuildingBlocks/Shared.Messaging/"]
 COPY ["src/ShippingService/ShippingService.csproj", "src/ShippingService/"]
 RUN dotnet restore "src/ShippingService/ShippingService.csproj"

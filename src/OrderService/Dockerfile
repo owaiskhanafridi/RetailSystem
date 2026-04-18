@@ -2,7 +2,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY ["RetailSystem.Microservices.sln", "."]
-COPY ["src/BuildingBlocks/Shared.Grpc/Shared.Grpc.csproj", "src/BuildingBlocks/Shared.Grpc/"]
+COPY ["src/BuildingBlocks/Shared.Grpc/Protos/inventory.proto", "src/BuildingBlocks/Shared.Grpc/Protos/"]
+COPY ["src/BuildingBlocks/Shared.Grpc/Protos/order.proto", "src/BuildingBlocks/Shared.Grpc/Protos/"]
+COPY ["src/BuildingBlocks/Shared.Grpc/Protos/payment.proto", "src/BuildingBlocks/Shared.Grpc/Protos/"]
 COPY ["src/BuildingBlocks/Shared.Messaging/Shared.Messaging.csproj", "src/BuildingBlocks/Shared.Messaging/"]
 COPY ["src/OrderService/OrderService.csproj", "src/OrderService/"]
 RUN dotnet restore "src/OrderService/OrderService.csproj"

@@ -15,4 +15,5 @@ app.MapGet("/", () => Results.Ok(new
     communication = "gRPC"
 }));
 
+Console.WriteLine("Starting PaymentService...");
 app.Run();
