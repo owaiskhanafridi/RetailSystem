@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option csharp_namespace = "Shared.Grpc.Ordering";
+
+package ordering.v1;
+
+service OrderProcessor {
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderReply);
+  rpc GetOrder (GetOrderRequest) returns (GetOrderReply);
+}
+
+message OrderItem {
+  string sku = 1;
+  int32 quantity = 2;
+  double unit_price = 3;
+}
+
+message CreateOrderRequest {
+  string order_id = 1;
+  string customer_id = 2;
+  repeated OrderItem items = 3;
+  string currency = 4;
+  string payment_method = 5;
+}
+
+message CreateOrderReply {
+  string order_id = 1;
+  string status = 2;
+  string message = 3;
+  string inventory_reservation_id = 4;
+  string payment_id = 5;
+  double total_amount = 6;
+}
+
+message GetOrderRequest {
+  string order_id = 1;
+}
+
+message GetOrderReply {
+  string order_id = 1;
+  string customer_id = 2;
+  string status = 3;
+  repeated OrderItem items = 4;
+  double total_amount = 5;
+  string inventory_reservation_id = 6;
+  string payment_id = 7;
+}

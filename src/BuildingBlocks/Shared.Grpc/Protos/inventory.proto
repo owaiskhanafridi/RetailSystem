@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option csharp_namespace = "Shared.Grpc.Inventory";
+
+package inventory.v1;
+
+service InventoryProcessor {
+  rpc ReserveInventory (ReserveInventoryRequest) returns (ReserveInventoryReply);
+  rpc ReleaseInventory (ReleaseInventoryRequest) returns (ReleaseInventoryReply);
+  rpc GetInventorySnapshot (GetInventorySnapshotRequest) returns (GetInventorySnapshotReply);
+}
+
+message InventoryItemReservation {
+  string sku = 1;
+  int32 quantity = 2;
+}
+
+message InventoryStockLevel {
+  string sku = 1;
+  int32 available_quantity = 2;
+}
+
+message ReserveInventoryRequest {
+  string order_id = 1;
+  repeated InventoryItemReservation items = 2;
+}
+
+message ReserveInventoryReply {
+  bool success = 1;
+  string reservation_id = 2;
+  string message = 3;
+  repeated InventoryStockLevel remaining_stock = 4;
+}
+
+message ReleaseInventoryRequest {
+  string reservation_id = 1;
+  string order_id = 2;
+}
+
+message ReleaseInventoryReply {
+  bool success = 1;
+  string message = 2;
+  repeated InventoryStockLevel current_stock = 3;
+}
+
+message GetInventorySnapshotRequest {}
+
+message GetInventorySnapshotReply {
+  repeated InventoryStockLevel items = 1;
+}

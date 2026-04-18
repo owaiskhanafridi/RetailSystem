@@ -1,0 +1,49 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: retail-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  orderservice:
+    build:
+      context: .
+      dockerfile: src/OrderService/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "5101:8080"
+    depends_on:
+      - inventoryservice
+      - paymentservice
+      - rabbitmq
+
+  paymentservice:
+    build:
+      context: .
+      dockerfile: src/PaymentService/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "5102:8080"
+
+  inventoryservice:
+    build:
+      context: .
+      dockerfile: src/InventoryService/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "5103:8080"
+
+  shippingservice:
+    build:
+      context: .
+      dockerfile: src/ShippingService/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "5104:8080"
+    depends_on:
+      - rabbitmq

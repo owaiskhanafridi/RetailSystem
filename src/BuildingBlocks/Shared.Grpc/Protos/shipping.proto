@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Shared.Grpc.Shipping";
+
+package shipping.v1;
+
+service ShippingProcessor {
+  rpc GetShipmentByOrder (GetShipmentByOrderRequest) returns (GetShipmentReply);
+}
+
+message GetShipmentByOrderRequest {
+  string order_id = 1;
+}
+
+message GetShipmentReply {
+  string shipment_id = 1;
+  string order_id = 2;
+  string status = 3;
+  string tracking_number = 4;
+  string created_at_utc = 5;
+}
