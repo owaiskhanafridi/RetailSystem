@@ -5,19 +5,26 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
 
   orderservice:
     build:
       context: .
       dockerfile: src/OrderService/Dockerfile
-    environment:
-      ASPNETCORE_URLS: http://+:8080
     ports:
       - "5101:8080"
+      - "5105:8081"
     depends_on:
-      - inventoryservice
-      - paymentservice
-      - rabbitmq
+      inventoryservice:
+        condition: service_started
+      paymentservice:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
 
   paymentservice:
     build:
