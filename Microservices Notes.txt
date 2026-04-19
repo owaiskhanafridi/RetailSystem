@@ -1,0 +1,13 @@
+4 services are created
+OrderService
+InventoryService
+PaymentService
+ShppingService
+
+OrderService communicate with Inventory and PaymentService through gRPC.
+OrderService publishes an Event of successful order placement (including successful inventory reservation and payment) and ShippingService consumes that event via RabbitMQ.
+
+Each service has it's proto file defined in SharedProject. proto's are references in services depending upon Client/Server consumption.
+
+Each service has it's own Dockerfile.
+There is docker-compose.yaml file which starts all the services in container. 
